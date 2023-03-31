@@ -1,3 +1,14 @@
+const customBoldClass = 'custom-bold';
+
+// Add the custom CSS class for increased boldness
+const style = document.createElement('style');
+style.textContent = `
+  .${customBoldClass} {
+    font-weight: 900; /* Increase this value for a bolder font-weight (100 to 900) */
+  }
+`;
+document.head.appendChild(style);
+
 function boldHalfOfLetters(textNode) {
   const text = textNode.nodeValue;
   const words = text.split(/\s+/);
@@ -5,7 +16,9 @@ function boldHalfOfLetters(textNode) {
     let boldedWord = '';
     for (let i = 0; i < word.length; i++) {
       boldedWord +=
-        i < Math.ceil(word.length / 2) ? `<b>${word[i]}</b>` : word[i];
+        i < Math.ceil(word.length / 2)
+          ? `<span class="${customBoldClass}">${word[i]}</span>`
+          : word[i];
     }
     return boldedWord;
   });
